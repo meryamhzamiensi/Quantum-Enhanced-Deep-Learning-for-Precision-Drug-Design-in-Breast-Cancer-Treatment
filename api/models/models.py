@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import pennylane as qml
 
-# Create your models here.
+# Define the hybrid quantum-classical model
 class QNNModel(nn.Module):
     def __init__(self, n_qubits, n_layers, n_classes):
         super(QNNModel, self).__init__()
@@ -14,12 +14,15 @@ class QNNModel(nn.Module):
         weight_shapes = {"weights": (n_layers, n_qubits, 3)}
         self.qlayer = qml.qnn.TorchLayer(quantum_circuit, weight_shapes)
 
-        # Classical post-processing layers
         self.post_processing = nn.Sequential(
-            nn.Linear(n_qubits, 32),  # Input size should match n_qubits
+            nn.Linear(n_qubits, 64),  # Expanded from 32 to 64 units
             nn.ReLU(),
-            nn.Linear(32, n_classes)
-        )
+            nn.Linear(64, 32),        # Additional hidden layer
+            nn.ReLU(),
+            nn.Linear(32, 16),        # Another hidden layer
+            nn.ReLU(),
+            nn.Linear(16, n_classes)  # Final output layer
+       )
 
     def forward(self, x):
         # Make sure input features match the number of qubits
@@ -42,7 +45,7 @@ class QNNModel(nn.Module):
         return self.post_processing(x)
     
 # Define the quantum device
-n_qubits = 6  # Adjust based on feature dimensionality after preprocessing
+n_qubits = 4  # Adjust based on feature dimensionality after preprocessing
 dev = qml.device("default.qubit", wires=n_qubits)
 
 # Define the quantum circuit for the QNN
