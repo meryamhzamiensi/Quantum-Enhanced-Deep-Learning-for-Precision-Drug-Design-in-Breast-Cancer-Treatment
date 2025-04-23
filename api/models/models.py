@@ -1,73 +1,48 @@
 from django.db import models
-import torch
-import torch.nn as nn
-import pennylane as qml
+from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 
-# Define the hybrid quantum-classical model
-class QNNModel(nn.Module):
-    def __init__(self, n_qubits, n_layers, n_classes):
-        super(QNNModel, self).__init__()
-        self.n_qubits = n_qubits
-        self.n_layers = n_layers
+# Custom user with role support
+class CustomUser(AbstractUser):
+    ROLE_CHOICES = [('chemist', 'Chemist'), ('pharma', 'Pharmaceutical')]
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
 
-        # Initialize random quantum circuit weights
-        weight_shapes = {"weights": (n_layers, n_qubits, 3)}
-        self.qlayer = qml.qnn.TorchLayer(quantum_circuit, weight_shapes)
+# ML models uploaded by admin or saved manually
+class MLModel(models.Model):
+    name = models.CharField(max_length=100)
+    file_path = models.FileField(upload_to='models/')  # Upload to /media/models/
 
-        self.post_processing = nn.Sequential(
-            nn.Linear(n_qubits, 64),  # Expanded from 32 to 64 units
-            nn.ReLU(),
-            nn.Linear(64, 32),        # Additional hidden layer
-            nn.ReLU(),
-            nn.Linear(32, 16),        # Another hidden layer
-            nn.ReLU(),
-            nn.Linear(16, n_classes)  # Final output layer
-       )
+    def __str__(self):
+        return self.name
 
-    def forward(self, x):
-        # Make sure input features match the number of qubits
-        # Pad or truncate as necessary
-        batch_size = x.shape[0]
-        # Pad with zeros if x has fewer features than n_qubits
-        x_padded = torch.zeros(batch_size, self.n_qubits, device=x.device)
-        x_padded[:, :x.shape[1]] = x[:, :self.n_qubits]
+# Optional: Through table to allow metadata per selection
+class ChemistModelLink(models.Model):
+    selection = models.ForeignKey('ChemistModelSelection', on_delete=models.CASCADE)
+    ml_model = models.ForeignKey(MLModel, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-        # Apply the quantum layer, processing each input individually
-        quantum_outputs = []
-        for i in range(batch_size):
-            quantum_output = self.qlayer(x_padded[i])  # Process one input at a time
-            quantum_outputs.append(quantum_output)
+    def clean(self):
+        if self.selection.chemist.role != 'chemist':
+            raise ValidationError("Only users with role 'chemist' can select models.")
 
-        # Stack the quantum outputs
-        x = torch.stack(quantum_outputs)
 
-        # Apply classical post-processing
-        return self.post_processing(x)
-    
-# Define the quantum device
-n_qubits = 4  # Adjust based on feature dimensionality after preprocessing
-dev = qml.device("default.qubit", wires=n_qubits)
+class ChemistModelSelection(models.Model):
+    chemist = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    selected_models = models.ManyToManyField(MLModel, through='ChemistModelLink')
 
-# Define the quantum circuit for the QNN
-@qml.qnode(dev, interface="torch")
-def quantum_circuit(inputs, weights):
-    # Encode the classical input data into quantum states
-    for i in range(n_qubits):
-        qml.RY(inputs[i], wires=i)
+    def clean(self):
+        if self.chemist.role != 'chemist':
+            raise ValidationError("Only users with role 'chemist' can select models.")
 
-    # Entangling layers
-    for layer in range(2):  # Using 2 layers for entanglement
-        # Apply parameterized rotation gates
-        for i in range(n_qubits):
-            qml.RX(weights[layer][i][0], wires=i)
-            qml.RY(weights[layer][i][1], wires=i)
-            qml.RZ(weights[layer][i][2], wires=i)
 
-        # Apply entangling gates (CZ gates between adjacent qubits)
-        for i in range(n_qubits - 1):
-            qml.CZ(wires=[i, i + 1])
-        if n_qubits > 2:  # Connect the last qubit with the first one to form a ring
-            qml.CZ(wires=[n_qubits - 1, 0])
+# Prediction request from pharmaceutical user
+class PharmaPredictionRequest(models.Model):
+    pharma_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    features = models.JSONField()
+    selected_model = models.ForeignKey(MLModel, on_delete=models.CASCADE)
+    prediction_result = models.JSONField(null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
-    # Measure the expectation values of Z operators
-    return [qml.expval(qml.PauliZ(i)) for i in range(n_qubits)]
+    def clean(self):
+        if self.pharma_user.role != 'pharma':
+            raise ValidationError("Only pharmaceutical users can make predictions.")
