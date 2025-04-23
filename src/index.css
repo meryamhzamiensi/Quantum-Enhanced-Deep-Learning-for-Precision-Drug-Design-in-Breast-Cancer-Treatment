@@ -1,0 +1,172 @@
+/* src/index.css */
+
+/* Réinitialisation des styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f9f9f9; /* Fond clair */
+  color: #333; /* Couleur de texte par défaut */
+}
+
+/* Styles Globaux pour les Liens */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Styles Globaux pour les Boutons */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+/* Styles Globaux pour les Sections */
+.section {
+  padding: 40px 20px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #4f46e5; /* Bleu-violet clair */
+}
+
+/* Styles Globaux pour les Cartes */
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Styles Globaux pour les Messages d'Erreur */
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* Styles Globaux pour les Tableaux */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f0f4ff; /* Bleu très clair */
+}
+
+/* Styles Globaux pour les En-têtes */
+.header {
+  background-color: #60a5fa; /* Bleu clair */
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Styles Globaux pour les Pieds de Page */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Styles Globaux pour les Boutons Primaires */
+.button-primary {
+  background-color: #8a2be2; /* Mauve thématique */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  background-color: #6c21a7; /* Mauve plus foncé */
+}
+
+/* Styles Globaux pour les Boutons Secondaires */
+.button-secondary {
+  background-color: #60a5fa; /* Bleu clair */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button-secondary:hover {
+  background-color: #3b82f6; /* Bleu plus soutenu */
+}
+
+/* Styles supplémentaires pour l'alignement du contenu */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Mise en page pour les cartes spécifiques */
+.card {
+  flex: 1 1 calc(33.333% - 20px); /* 3 cartes par ligne */
+  min-width: 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Styles supplémentaires pour les liens */
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
