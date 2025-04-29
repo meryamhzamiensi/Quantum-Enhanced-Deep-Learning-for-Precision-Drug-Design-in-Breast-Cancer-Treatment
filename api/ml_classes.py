@@ -9,7 +9,8 @@ from .quantum_encoder import quantum_transform  # import your quantum function
 
 
 class CustomDecisionTree(DecisionTreeClassifier):
-    pass
+    def __init__(self, criterion='gini', max_depth=None, random_state=None):
+        super(CustomDecisionTree, self).__init__(criterion=criterion, max_depth=max_depth, random_state=random_state)
 class CustomRandomForest(RandomForestClassifier):
     def __init__(self, n_estimators=100, max_depth=None, random_state=None):
         super(CustomRandomForest, self).__init__(n_estimators=n_estimators, max_depth=max_depth, random_state=random_state)

@@ -1,12 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
+from .serializers import RegisterSerializer, LoginSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from api.models import MLModel
 import numpy as np
 import joblib
-
+from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
 
 class PredictView(APIView):
     def post(self, request):
@@ -59,6 +60,8 @@ class PredictView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
+User = get_user_model()
+
 
 class RegisterView(APIView):
     def post(self, request):
@@ -67,26 +70,45 @@ class RegisterView(APIView):
             user = serializer.save()
             refresh = RefreshToken.for_user(user)
             return Response({
-                'user': UserSerializer(user).data,
+                'user': {
+                    'id': user.id,
+                    'email': user.email,
+                    'role': user.user_type  
+                },
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class LoginView(APIView):
     def post(self, request):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.validated_data
+        username = request.data.get('username', '')  # Instead of email
+        password = request.data.get('password', '')
+        user = authenticate(username=username, password=password)
+
+        if user:
             refresh = RefreshToken.for_user(user)
             return Response({
-                'user': UserSerializer(user).data,
+                'user': {
+                    'id': user.id,
+                    'email': user.email,
+                    'user_type': user.user_type  
+                },
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
             })
-        return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
+        return Response(
+            {'error': 'Invalid credentials'},
+            status=status.HTTP_401_UNAUTHORIZED
+        )
+
 
 class CurrentUserView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
-        return Response(serializer.data)
+        return Response({
+            'id': request.user.id,
+            'email': request.user.email,
+            'user_type': request.user.user_type,
+        })

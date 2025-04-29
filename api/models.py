@@ -8,20 +8,23 @@ from backend.settings import MODELS_DIR
 
 
 class CustomUser(AbstractUser):
-    USER_TYPES = (
-        ('ADMIN', 'Admin'),
-        ('PHARMA', 'Pharmaceutical'),
-        ('CHEMIST', 'Chemist'),
-    )
+    ROLE_CHOICES = [
+        ('admin', 'Administrator'),
+        ('pharma', 'Pharmaceutical'),
+        ('chemist', 'Chemist'),
+    ]
+
     user_type = models.CharField(
-        max_length=10,
-        choices=USER_TYPES,
-        default='ADMIN'  # Important default value
+        max_length=20,
+        choices=ROLE_CHOICES,
+        default='admin'
     )
     email = models.EmailField(unique=True)
 
+    REQUIRED_FIELDS = ['user_type']
+
     def __str__(self):
-        return self.username
+        return self.email
 
 
 class MLModel(models.Model):
