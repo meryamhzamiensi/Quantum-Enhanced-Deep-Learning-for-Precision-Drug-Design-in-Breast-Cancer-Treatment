@@ -13,6 +13,10 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('email', 'username', 'password', 'user_type')
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'user_type': {'required': True}  # Enforce role selection
+        }
 
     def create(self, validated_data):
         print("Received data:", validated_data)
@@ -20,7 +24,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             username=validated_data['username'],
             password=validated_data['password'],
-            user_type=validated_data.get('user_type', 'admin')
+            user_type=validated_data.get('user_type')
         )
         return user
 

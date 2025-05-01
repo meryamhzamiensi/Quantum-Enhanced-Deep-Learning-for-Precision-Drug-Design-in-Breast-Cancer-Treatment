@@ -73,7 +73,7 @@ class RegisterView(APIView):
                 'user': {
                     'id': user.id,
                     'email': user.email,
-                    'role': user.user_type  
+                    'user_type': user.user_type  
                 },
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
@@ -104,11 +104,3 @@ class LoginView(APIView):
         )
 
 
-class CurrentUserView(APIView):
-    def get(self, request):
-        serializer = UserSerializer(request.user)
-        return Response({
-            'id': request.user.id,
-            'email': request.user.email,
-            'user_type': request.user.user_type,
-        })
