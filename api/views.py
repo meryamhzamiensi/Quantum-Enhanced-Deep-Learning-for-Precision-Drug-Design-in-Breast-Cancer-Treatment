@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status,generics, permissions
 from .serializers import RegisterSerializer, LoginSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from api.models import MLModel
+from .models import CustomUser
 import numpy as np
 import joblib
 from django.contrib.auth import authenticate
@@ -85,7 +86,8 @@ class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username', '')  # Instead of email
         password = request.data.get('password', '')
-        user = authenticate(username=username, password=password)
+        user_type = request.data.get('user_type', '')
+        user = authenticate(username=username, password=password, user_type=user_type)
 
         if user:
             refresh = RefreshToken.for_user(user)
