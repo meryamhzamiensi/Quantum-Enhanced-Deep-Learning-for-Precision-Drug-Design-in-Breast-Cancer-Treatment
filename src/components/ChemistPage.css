@@ -1,0 +1,554 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header Styles */
+/* Header Styles */
+header {
+    background-color: #007bff; /* Medical Blue */
+    color: white;
+    padding: 5px 20px;  /* Réduit le padding pour un header plus fin */
+    text-align: center;
+    font-size: 20px;  /* Réduit la taille de la police */
+    border-radius: 5px;
+}
+
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #003366; /* Dark Blue */
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    font-size: 18px;
+    border-right: 2px solid #0055cc;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #0055cc;
+}
+
+/* Main Content Area */
+.main-panel {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+/* Card Styles */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: #f7f7f7;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body ul,
+.card-body table {
+    margin-top: 10px;
+}
+
+.card-footer {
+    padding: 15px;
+    background-color: #f7f7f7;
+    text-align: right;
+    font-size: 14px;
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f1f1f1;
+    color: #007bff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e8f7ff;
+}
+
+/* Badge Styles */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+    color: white;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.badge-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.badge-pill {
+    border-radius: 20px;
+}
+
+/* Button Styles */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0055cc;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Form Input Styles */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Medical Icon Styles */
+.la-flask,
+.la-line-chart,
+.la-lightbulb-o,
+.la-database {
+    font-size: 40px;
+    color: #007bff;
+}
+
+.la-flask {
+    color: #28a745; /* Green */
+}
+
+.la-line-chart {
+    color: #ffc107; /* Yellow */
+}
+
+.la-lightbulb-o {
+    color: #dc3545; /* Red */
+}
+
+.la-database {
+    color: #17a2b8; /* Teal */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+footer .copyright {
+    text-align: center;
+    font-size: 14px;
+    color: #6c757d;
+    margin-top: 15px;
+}
+
+footer .copyright a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer .copyright a:hover {
+    text-decoration: underline;
+}
+
+/* Chemist Page Styles */
+.chemist-page {
+    padding: 20px;
+}
+
+/* Fragment Library Styles */
+.fragment-library .fragment-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.fragment-card {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.fragment-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Binding Affinity Button Styles */
+.binding-affinity .predict-button {
+    padding: 12px 18px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.binding-affinity .predict-button:hover {
+    background-color: #45a049;
+}
+
+/* Result Styles */
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #2d7a30;
+    font-size: 18px;
+}
+
+/* Form Styles */
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+form textarea:focus {
+    border-color: #007bff;
+}
+
+/* Header Modification */
+.main-header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e7e7e7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3c8dbc;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 15px;
+}
+
+.navbar-nav .nav-item a {
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.navbar-nav .nav-item a:hover {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+/* Profile Dropdown Styles */
+.profile-pic {
+    display: flex;
+    align-items: center;
+    color: #333;
+    cursor: pointer;
+}
+
+.profile-pic img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-pic span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+    font-size: 14px;
+    padding: 10px 15px;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+    color: #007bff;
+}
+
+  .chemist-page.submit-structure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./3583503.jpg') no-repeat center center;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+   
+  }
+  .submit-structure-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .submit-structure-form h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  .submit-structure-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .submit-structure-form button {
+    background-color: #2a9d8f;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-structure-form button:hover {
+    background-color: #21867a;
+  }
+  
+  
+  
+  .submit-structure form {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .submit-structure h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #1e3c72;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  .submit-structure textarea {
+    resize: vertical;
+    border: 2px solid #cddfea;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    background-color: #f9fbfd;
+    transition: border-color 0.3s;
+  }
+  
+  .submit-structure textarea:focus {
+    outline: none;
+    border-color: #4ca3dd;
+    background-color: #ffffff;
+  }
+  
+  .submit-structure button {
+    padding: 12px 20px;
+    background-color: #4ca3dd;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .submit-structure button:hover {
+    background-color: #3b8cc3;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 600px) {
+    .submit-structure form {
+      padding: 25px;
+    }
+  
+    .submit-structure h2 {
+      font-size: 1.6rem;
+    }
+  }
+  .chemist-page.submit-structure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+  }
+  
+  .submit-form {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .submit-form h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 10px;
+  }
+  
+  .submit-form input {
+    padding: 14px;
+    border: 2px solid #d0dce7;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #f4f8fb;
+    transition: border-color 0.3s;
+  }
+  
+  .submit-form input:focus {
+    border-color: #4ca3dd;
+    outline: none;
+    background-color: #ffffff;
+  }
+  
+  .submit-form button {
+    padding: 14px;
+    background-color: #4ca3dd;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-form button:hover {
+    background-color: #397bbf;
+  }
+  
