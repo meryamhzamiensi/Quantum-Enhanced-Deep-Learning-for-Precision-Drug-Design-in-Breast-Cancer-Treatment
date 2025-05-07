@@ -1,5 +1,6 @@
 import pennylane as qml
 import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
 
 
 # Set up quantum device (using 4 qubits)
@@ -90,3 +91,42 @@ def quantum_transform(X_data):
     
     # Convert to numpy array - shape will be (n_samples, n_qubits)
     return np.array(quantum_features)
+import pennylane as qml
+import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class QuantumNumericalTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, n_qubits=4):
+        self.n_qubits = n_qubits
+        self.dev = qml.device('default.qubit', wires=n_qubits)
+        self.weights = np.random.randn(n_qubits)
+        
+        # Define the circuit as a bound method
+        self.circuit = self._create_circuit()
+    
+    def _create_circuit(self):
+        """Helper method to create the quantum circuit"""
+        @qml.qnode(self.dev)
+        def circuit(inputs, weights):
+            for i in range(self.n_qubits):
+                qml.RY(np.pi * inputs[i % len(inputs)], wires=i)
+            for i in range(self.n_qubits-1):
+                qml.CNOT(wires=[i, i+1])
+            for i in range(self.n_qubits):
+                qml.RX(weights[i], wires=i)
+            return [qml.expval(qml.PauliZ(i)) for i in range(self.n_qubits)]
+        return circuit
+    
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        if len(X.shape) == 1:
+            X = X.reshape(1, -1)
+            
+        quantum_features = []
+        for sample in X:
+            sample = np.array(sample, dtype=np.float32).flatten()
+            quantum_features.append(self.circuit(sample, self.weights))
+        
+        return np.array(quantum_features)
