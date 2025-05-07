@@ -1,0 +1,304 @@
+/* src/index.css */
+
+/* Réinitialisation des styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f9f9f9; /* Fond clair */
+  color: #333; /* Couleur de texte par défaut */
+}
+
+/* Styles Globaux pour les Liens */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Styles Globaux pour les Boutons */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+/* Styles Globaux pour les Sections */
+.section {
+  padding: 40px 20px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #4f46e5; /* Bleu-violet clair */
+}
+
+/* Styles Globaux pour les Cartes */
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Styles Globaux pour les Messages d'Erreur */
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* Styles Globaux pour les Tableaux */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f0f4ff; /* Bleu très clair */
+}
+
+/* Styles Globaux pour les En-têtes */
+.header {
+  background-color: #60a5fa; /* Bleu clair */
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Styles Globaux pour les Pieds de Page */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Styles Globaux pour les Boutons Primaires */
+.button-primary {
+  background-color: #8a2be2; /* Mauve thématique */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  background-color: #6c21a7; /* Mauve plus foncé */
+}
+
+/* Styles Globaux pour les Boutons Secondaires */
+.button-secondary {
+  background-color: #60a5fa; /* Bleu clair */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button-secondary:hover {
+  background-color: #3b82f6; /* Bleu plus soutenu */
+}
+
+/* Styles supplémentaires pour l'alignement du contenu */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Mise en page pour les cartes spécifiques */
+.card {
+  flex: 1 1 calc(33.333% - 20px); /* 3 cartes par ligne */
+  min-width: 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Styles supplémentaires pour les liens */
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  background-color: #003366; /* Dark Blue */
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  font-size: 18px;
+  border-right: 2px solid #0055cc;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #0055cc;
+}
+
+/* Main Content Area */
+.main-panel {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+/* Card Styles */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  background-color: #f7f7f7;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body ul,
+.card-body table {
+  margin-top: 10px;
+}
+
+.card-footer {
+  padding: 15px;
+  background-color: #f7f7f7;
+  text-align: right;
+  font-size: 14px;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f1f1f1;
+  color: #007bff;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e8f7ff;
+}
+
+/* Badge Styles */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: white;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.badge-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.badge-pill {
+  border-radius: 20px;
+}
