@@ -31,7 +31,6 @@ function App() {
 
         {/* Molecule/Compound Management */}
         <Route path="/inventaire-molecules" element={<CompoundInventory />} />
-        {/* Corrected route path to match the Link in CompoundInventory */}
         <Route path="/MoleculeSubmissionForm" element={<MoleculeSubmissionForm />} />
         <Route path="/update-medicine" element={<UpdateMedicine />} />
       </Routes>
