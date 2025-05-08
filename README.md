@@ -1,30 +1,29 @@
-# Quantum-Enhanced Deep Learning for Precision Drug Design in Breast Cancer Treatment
+# Quantum-Enhanced Deep Learning in Drug Design for Breast Cancer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and integrates quantum-enhanced deep learning methods for drug discovery in the context of breast cancer.
+Ce projet intègre le deep learning, des techniques quantiques, et des algorithmes de machine learning classiques (Random Forest, Decision Tree) pour améliorer la conception de médicaments contre le cancer du sein. Il comprend :
 
-## Available Scripts
+- 🌐 Une interface frontend avec authentification par rôle
+- 🧪 Un backend Django pour la gestion des utilisateurs, rôles et prédictions
+- 🧠 Des modèles ML pour prédire l'efficacité des molécules
+- ⚛️ Des expérimentations pour intégrer des effets quantiques (à venir)
 
-In the project directory, you can run:
+## 🔐 Fonctionnalités
 
-### `npm start`
+### Frontend
+- Formulaire de connexion
+- Redirection selon le rôle :
+  - **Pharmacien** ➝ Dashboard Pharma
+  - **Chimiste** ➝ Dashboard Chemiste
+  - **Admin** ➝ Dashboard Admin
 
-Runs the app in development mode.  
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend (Django)
+- Authentification sécurisée (Django Allauth ou JWT)
+- Gestion des rôles et des sessions
+- API REST pour communiquer avec le frontend
+- Base de données PostgreSQL (par défaut)
 
-### `npm test`
+### Modèles de Machine Learning
+- **Random Forest** et **Decision Tree** pour prédire l'efficacité de molécules
+- Données de test anonymisées (format CSV ou intégré à la base)
+- Intégration future de **quantum-enhanced models**
 
-Launches the test runner in the interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-## Learn More
-
-- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)  
-- [React documentation](https://reactjs.org/)  
-- [Deployment instructions](https://facebook.github.io/create-react-app/docs/deployment)
