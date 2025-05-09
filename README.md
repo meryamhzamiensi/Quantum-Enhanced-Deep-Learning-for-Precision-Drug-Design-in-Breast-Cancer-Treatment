@@ -1,29 +1,82 @@
-# Quantum-Enhanced Deep Learning in Drug Design for Breast Cancer
+# Quantum-Enhanced Deep Learning for Precision Drug Design in Breast Cancer Treatment
 
-Ce projet intègre le deep learning, des techniques quantiques, et des algorithmes de machine learning classiques (Random Forest, Decision Tree) pour améliorer la conception de médicaments contre le cancer du sein. Il comprend :
+Ce projet a pour objectif de combiner des techniques d'apprentissage automatique classiques (Random Forest, Decision Tree, MLP) avec des modèles quantiques afin d’optimiser la conception de médicaments personnalisés contre le cancer du sein.
 
-- 🌐 Une interface frontend avec authentification par rôle
-- 🧪 Un backend Django pour la gestion des utilisateurs, rôles et prédictions
-- 🧠 Des modèles ML pour prédire l'efficacité des molécules
-- ⚛️ Des expérimentations pour intégrer des effets quantiques (à venir)
+---
 
-## 🔐 Fonctionnalités
+## 🧠 Objectif
 
-### Frontend
-- Formulaire de connexion
-- Redirection selon le rôle :
-  - **Pharmacien** ➝ Dashboard Pharma
-  - **Chimiste** ➝ Dashboard Chemiste
-  - **Admin** ➝ Dashboard Admin
+Développer une plateforme intelligente permettant :
+- La prédiction de l’efficacité des composés médicamenteux à l’aide de modèles hybrides (classiques + quantiques)
+- Une interface de visualisation dédiée aux différents profils utilisateurs (pharmaceutiques, chimistes, administrateurs)
+- L’amélioration de l'expérience utilisateur grâce à des prédictions plus précises et rapides basées sur le MLP et l'apprentissage quantique
 
-### Backend (Django)
-- Authentification sécurisée (Django Allauth ou JWT)
-- Gestion des rôles et des sessions
-- API REST pour communiquer avec le frontend
-- Base de données PostgreSQL (par défaut)
+---
 
-### Modèles de Machine Learning
-- **Random Forest** et **Decision Tree** pour prédire l'efficacité de molécules
-- Données de test anonymisées (format CSV ou intégré à la base)
-- Intégration future de **quantum-enhanced models**
+## 🔧 Technologies utilisées
+
+| Côté               | Technologies                                               |
+|-------------------|------------------------------------------------------------|
+| **Frontend**       | React, React Router                       |
+| **Backend**        | Django, Django REST Framework              |
+| **Machine Learning** | Random Forest, Decision Tree, MLP, Modèles Quantique (PennyLane) |
+| **Base de données** | SQLite (par défaut avec Django)  |
+| **Sécurité**        | Authentification JWT ou session, gestion des rôles       |
+
+---
+
+## 🌐 Fonctionnalités principales
+
+### ✅ Frontend (React)
+- Page d’accueil informative
+- Formulaires de connexion et d'inscription
+- Dashboards dédiés pour :
+  - **Pharmaceutiques**
+  - **Chimistes**
+  - **Administrateurs**
+- Affichage dynamique des données de prédiction et profils moléculaires
+
+### ⚙️ Backend (Django)
+- Gestion des utilisateurs et rôles
+- API REST sécurisée
+- Intégration des modèles ML :
+  - **Random Forest**
+  - **Decision Tree**
+  - **Multi-Layer Perceptron (MLP)**
+  - **Modèles quantiques hybrides** pour améliorer la précision prédictive
+- Base de données relationnelle pour les molécules, utilisateurs, résultats
+
+
+---
+
+## 🧪 Modèles de Machine Learning
+
+Les modèles sont construits avec **Scikit-learn**, **PyTorch** ou et intègrent :
+- **Random Forest** : robuste sur les jeux de données non linéaires
+- **Decision Tree** : prédictions explicables
+- **MLP (Multi-Layer Perceptron)** : modèle de deep learning pour améliorer la qualité des prédictions
+- **Modèles quantiques hybrides** : pour booster les performances, notamment sur les petits datasets moléculaires
+
+---
+
+## 🛠️ Installation et exécution
+
+### 1. Cloner le dépôt
+```bash
+git clone https://github.com/meryamhzamiensi/Quantum-Enhanced-Deep-Learning-for-Precision-Drug-Design-in-Breast-Cancer-Treatment.git
+cd Quantum-Enhanced-Deep-Learning-for-Precision-Drug-Design-in-Breast-Cancer-Treatment
+
+### backend 
+cd backend
+python -m venv venv
+source venv/bin/activate  # ou venv\Scripts\activate sous Windows
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+
+### frontend 
+cd frontend
+npm install
+npm start
+
 
